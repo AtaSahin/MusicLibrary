@@ -23,6 +23,9 @@ namespace MusicLibraryApp.Controllers
             _lastFmService = lastFmService;
         }
 
+
+
+
         public async Task<IActionResult> Index()
         {
             var topTracksJson = await _lastFmService.GetTopTracksAsync();
@@ -44,10 +47,31 @@ namespace MusicLibraryApp.Controllers
             {
                 Name = t.Name,
                 Artist = t.Artist?.Name,
-                ImageUrl = t.Image?.FirstOrDefault()?.Text
+              
+                Url = t.Url,
+                Duration = t.Duration,
+                Playcount = t.Playcount,
+                Listeners = t.Listeners,
+                Mbid = t.Mbid,
+               
+                ImageUrlLarge = t.Image?.FirstOrDefault(i => i.Size == "large")?.Text,
+                Genres = t.Genres?.Split(',').ToList()
+
             }).ToList();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddToPlaylist(string trackId)
+        {
+            // Şarkıyı playliste ekleyebilir ve bildirim mesajını ekleyebilirsiniz.
+            // Bu örnekte TempData kullanılıyor, dilerseniz başka bir yöntem de kullanabilirsiniz.
+
+            TempData["PlaylistMessage"] = "Şarkı playliste eklendi.";
+
+            // Diğer işlemleri gerçekleştirin (örneğin şarkıyı bir listeye ekleyin).
+
+            return RedirectToAction("Index");
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -58,5 +82,8 @@ namespace MusicLibraryApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    
     }
+
+
 }
