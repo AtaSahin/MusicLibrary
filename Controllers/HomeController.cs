@@ -47,18 +47,17 @@ namespace MusicLibraryApp.Controllers
             {
                 Name = t.Name,
                 Artist = t.Artist?.Name,
-              
                 Url = t.Url,
                 Duration = t.Duration,
                 Playcount = t.Playcount,
                 Listeners = t.Listeners,
                 Mbid = t.Mbid,
-               
                 ImageUrlLarge = t.Image?.FirstOrDefault(i => i.Size == "large")?.Text,
-                Genres = t.Genres?.Split(',').ToList()
-
+             
+           
             }).ToList();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddToPlaylist(string trackId)

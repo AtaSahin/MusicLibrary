@@ -1,7 +1,24 @@
 ﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .login-logout-card {
+        background-color: #000000; /* Siyah arka plan rengi */
+        color: grey; /* Metin rengi */
+        border-radius: 10px; /* Kartın kenar yuvarlaklığı */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Kart üzerine hafif bir gölge efekti */
+    }
 
+    .nav-link {
+        color: #ffffff; /* Menü bağlantılarının metin rengi */
+    }
+
+        .nav-link.active {
+            background-color: #1db954; /* Aktif menü bağlantısının renk */
+            border-radius:10px;
+            color: #000000; /* Aktif menü bağlantısının metin rengi */
+        }
+</style>
 <div class="row justify-content-center">
 
     <div class="col-5 mt-5">
