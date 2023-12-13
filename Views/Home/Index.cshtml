@@ -1,8 +1,61 @@
-﻿@{
+﻿@model List<LastFmTrack>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <form method="get">
+        <div class="form-group">
+            <label for="searchTerm">Search:</label>
+            <input type="text" name="searchTerm" id="searchTerm" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Song</th>
+                    <th>Artist</th>
+                    <th>URL</th>
+                    <th>Genre</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var track in Model)
+                {
+                    @if (string.IsNullOrEmpty(Context.Request.Query["searchTerm"]) ||
+                   track.Name.Contains(Context.Request.Query["searchTerm"], StringComparison.OrdinalIgnoreCase) ||
+                   track.Artist.Contains(Context.Request.Query["searchTerm"], StringComparison.OrdinalIgnoreCase))
+                    {
+                        <tr>
+                            <td>
+                                <form method="post" asp-action="AddToPlaylist">
+                                    <input type="hidden" name="trackId" value="@track.Id" />
+                                    <input type="submit" value="Playliste Ekle" />
+                                </form>
+                            </td>
+                            <td>@track.Name</td>
+                            <td>@track.Artist</td>
+                            <td><a href="@track.Url" target="_blank">Listen</a></td>
+                            <td>@track.Genres</td>
+                            <td><img src="@track.ImageUrlLarge" alt="Cover Image (Large)" /></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No tracks available.</p>
+    }
 </div>
