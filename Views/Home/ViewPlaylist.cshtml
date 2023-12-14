@@ -1,0 +1,29 @@
+﻿@model Playlist
+@section Styles {
+    <link rel="stylesheet" href="~/css/indexStyle.css" />
+}
+<h1>Your Playlist</h1>
+<form method="get">
+    <div class="form-group">
+        <label for="searchTerm">Search:</label>
+        <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="Enter your search term" />
+        <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+    </div>
+</form>
+@if (Model.Tracks.Any())
+{
+    <div class="song-container">
+        @foreach (var track in Model.Tracks)
+        {
+            <div class="song-card">
+                <h3>@track.Name</h3>
+                <p>@track.Artist</p>
+               
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No tracks in the playlist.</p>
+}

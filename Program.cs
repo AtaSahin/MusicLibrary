@@ -1,8 +1,8 @@
-// Program.cs
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using MusicLibraryApp.Areas.Identity.Data;
 using MusicLibraryApp.Data;
 
@@ -14,12 +14,11 @@ builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(con
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<AuthDbContext>();
 
-builder.Services.AddHttpClient(); // HttpClient'i ekleyin
+builder.Services.AddHttpClient(); // Add HttpClient
 builder.Services.AddSingleton<LastFmService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddRazorPages();
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -29,6 +28,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 6;
 });
+
+builder.Services.AddSession(); // Add this line to configure session services
 
 var app = builder.Build();
 
@@ -46,6 +47,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession(); // Add this line to enable session state
 
 app.MapControllerRoute(
     name: "default",

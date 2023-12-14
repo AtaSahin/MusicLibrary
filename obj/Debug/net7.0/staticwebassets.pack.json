@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\MusicLibraryApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\indexStyle.css",
+      "PackagePath": "staticwebassets\\css\\indexStyle.css"
+    },
+    {
       "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -1,4 +1,4 @@
-﻿
+﻿namespace MusicLibraryApp.Models { 
 public class LastFmTrack
 {
     public string Name { get; set; }
@@ -15,4 +15,5 @@ public class LastFmTrack
     public int PlaylistId { get; set; }
     public string ImageUrlLarge { get; set; }   // Büyük boyutlu görsel URL
 
+}
 }

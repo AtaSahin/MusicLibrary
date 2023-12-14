@@ -4,79 +4,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<style>
-    body {
-        background: rgb(3,1,5);
-        background: linear-gradient(360deg, rgba(3,1,5,1) 90%, rgba(36,4,74,1) 93%);
-        color: #ffffff; /* Metin rengi */
-    }
-
-
-    .song-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
-    .song-card {
-        background-color: #17141b; /* Şarkı kartı arka plan rengi (koyu gri) */
-        color: #ffffff; /* Şarkı kartı metin rengi */
-        border-radius: 10px; /* Şarkı kartı kenar yuvarlaklığı */
-        margin: 10px;
-        padding: 15px;
-        width: 300px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Şarkı kartına daha belirgin bir gölge efekti */
-    }
-
-        .song-card img {
-            max-width: 100%;
-            border-radius: 5px; /* Şarkı kartındaki görüntünün kenar yuvarlaklığı */
-        }
-
-    .playlist-button {
-        background-color: #1db954; /* Playliste ekle butonu yeşil rengi */
-        border: none;
-        color: #ffffff; /* Playliste ekle butonu metin rengi */
-        padding: 10px;
-        border-radius: 5px; /* Playliste ekle butonu kenar yuvarlaklığı */
-        cursor: pointer;
-    }
-
-        .playlist-button:hover {
-            background-color: #168f3a; /* Playliste ekle butonu üzerine gelindiğindeki yeşil rengi */
-        }
-
-    #searchTerm {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #24044a;
-        border-radius: 30px; 
-        background-color: rgba(255, 255, 255, 0.1); 
-        color: #ffffff; 
-        outline: none; 
-    }
-
-        #searchTerm::placeholder {
-            color: lightgrey; 
-        }
-
-    #searchButton {
-        background-color: #1db954; 
-        color: #ffffff; 
-        border: none;
-        border-radius: 5px; 
-        padding: 10px;
-        cursor: pointer;
-    }
-
-        #searchButton:hover {
-            background-color: #168f3a; 
-        }
-</style>
-
+@section Styles {
+    <link rel="stylesheet" href="~/css/indexStyle.css" />
+}
+<div class="btn-container">
+    <a href="@Url.Action("ViewPlaylist", "Home", new { playlistId = 1 })" class="btn btn-transparent">Sample Playlist</a>
+</div>
 <div class="text-center">
-    <h1 class="display-8">Good afternoon</h1>
 
+    <h1 class="display-8">Good afternoon</h1>
+  
 
     <form method="get">
         <div class="form-group">
@@ -90,12 +27,16 @@
     @if (Model != null && Model.Any())
     {
         <div class="song-container">
+
             @foreach (var track in Model)
             {
+
                 @if (string.IsNullOrEmpty(Context.Request.Query["searchTerm"]) ||
                track.Name.Contains(Context.Request.Query["searchTerm"], StringComparison.OrdinalIgnoreCase) ||
                track.Artist.Contains(Context.Request.Query["searchTerm"], StringComparison.OrdinalIgnoreCase))
+
                 {
+
                     <div class="song-card">
                         <img src="@track.ImageUrlLarge" alt="Cover Image (Large)" />
                         <h3>@track.Name</h3>
@@ -103,13 +44,21 @@
                         <a href="@track.Url" target="_blank" class="play-button">&#9654;</a> 
                         <p>Genre: @track.Genres</p>
 
+
                         <form method="post" asp-action="AddToPlaylist">
-                            <input type="hidden" name="trackId" value="@track.Id" />
+                            <input type="hidden" name="Id" value="@track.Id" />
+                            <input type="hidden" name="Name" value="@track.Name" />
+                            <input type="hidden" name="Artist" value="@track.Artist" />
                             <button type="submit" class="playlist-button">Playliste Ekle</button>
                         </form>
+
+
+                      
                     </div>
+
                 }
             }
+
         </div>
     }
     else

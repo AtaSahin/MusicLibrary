@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MusicLibraryApp.Helpers;
 using MusicLibraryApp.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -53,28 +54,47 @@ namespace MusicLibraryApp.Controllers
                 Listeners = t.Listeners,
                 Mbid = t.Mbid,
                 ImageUrlLarge = t.Image?.FirstOrDefault(i => i.Size == "large")?.Text,
-             
-           
+
+
             }).ToList();
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> AddToPlaylist(string trackId)
+
+
+
+
+        public IActionResult AddToPlaylist(Track track)
         {
-            // Şarkıyı playliste ekleyebilir ve bildirim mesajını ekleyebilirsiniz.
-            // Bu örnekte TempData kullanılıyor, dilerseniz başka bir yöntem de kullanabilirsiniz.
+            var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
 
-            TempData["PlaylistMessage"] = "Şarkı playliste eklendi.";
+         
+            playlist.Tracks.Add(track);
 
-            // Diğer işlemleri gerçekleştirin (örneğin şarkıyı bir listeye ekleyin).
+            // Playlist session olarak kaydedildi
+            HttpContext.Session.SetObjectAsJson("Playlist", playlist);
 
-            return RedirectToAction("Index");
+            
+            return RedirectToAction("ViewPlaylist");
         }
-        public IActionResult Privacy()
+
+     
+        private Track GetTrackDetails(int trackId)
         {
-            return View();
+          
+
+            return new Track {  };
         }
+
+
+
+        public IActionResult ViewPlaylist()
+        {
+            var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
+            return View(playlist);
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
