@@ -37,10 +37,10 @@ namespace MusicLibraryApp.Controllers
                 return View(tracks);
             }
 
-            return View(); // API'dan veri çekilemediği durumu
+            return View(); // API'dan veri çekilemediği durumu - Fail durumu
         }
 
-        private List<LastFmTrack> ConvertToYourModel(string topTracksJson)
+        private List<LastFmTrack>? ConvertToYourModel(string topTracksJson)
         {
             var tracksResponse = JsonConvert.DeserializeObject<LastFmApiResponse>(topTracksJson);
 
@@ -63,7 +63,7 @@ namespace MusicLibraryApp.Controllers
 
 
 
-
+        //Playliste şarkı ekleme
         public IActionResult AddToPlaylist(Track track)
         {
             var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
@@ -74,11 +74,29 @@ namespace MusicLibraryApp.Controllers
             // Playlist session olarak kaydedildi
             HttpContext.Session.SetObjectAsJson("Playlist", playlist);
 
-            
+            //Düzenlenen playlist sayfasına yönlendirildi fakat düzeltilecek...
+            return RedirectToAction("");
+        }
+
+        // Playlistten şarkı çıkarma
+        public IActionResult RemoveFromPlaylist(int trackId)
+        {
+            var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
+
+            var track = playlist.Tracks.FirstOrDefault(t => t.Id == trackId);
+
+            if (track != null)
+            {
+                playlist.Tracks.Remove(track);
+            }
+
+            // Playlist session olarak kaydedildi
+            HttpContext.Session.SetObjectAsJson("Playlist", playlist);
+
+            //Düzenlenen playlist sayfasına yönlendirildi
             return RedirectToAction("ViewPlaylist");
         }
 
-     
         private Track GetTrackDetails(int trackId)
         {
           
