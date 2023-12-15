@@ -1,0 +1,50 @@
+﻿@model Playlist
+@section Styles {
+    <link rel="stylesheet" href="~/css/indexStyle.css" />
+}
+<h1>Your Playlist</h1>
+<form method="get">
+    <div class="form-group">
+        <label for="searchTerm">Search:</label>
+        <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="Enter your search term" />
+        <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@if (Model.Tracks.Any())
+{
+    <div class="song-container">
+        @foreach (var track in Model.Tracks)
+        {
+
+            @if (string.IsNullOrEmpty(Context.Request.Query["searchTerm"]) ||
+                             track.Name.Contains(Context.Request.Query["searchTerm"], StringComparison.OrdinalIgnoreCase) ||
+                             track.Artist.Contains(Context.Request.Query["searchTerm"], StringComparison.OrdinalIgnoreCase))
+            {
+                <div class="song-card">
+                    <h3>@track.Name</h3>
+                <p>@track.Artist</p>
+                <a href="@track.Url" target="_blank" class="play-button">&#9654;</a>
+                <p>Genre: @track.Genres</p>
+
+                <form method="post" asp-action="RemoveFromPlayList">
+                    <input type="hidden" name="Id" value="@track.Id" />
+                    <input type="hidden" name="Name" value="@track.Name" />
+                    <input type="hidden" name="Artist" value="@track.Artist" />
+                    <input type="hidden" name="Url" value="@track.Url" />
+                    <input type="hidden" name="Genres" value="@track.Genres" />
+                    <button type="submit" class="playlist-button">Remove From Playlist</button>
+                </form>
+            </div>
+            }
+            else
+            {
+                <p>Couldn't find this sing/singer from your Playlist</p>
+            }
+        }
+    </div>
+}
+else
+{
+    <p>No tracks in the playlist.</p>
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "y0WO725HUI31mh20PMeKkEbR9VNO1P2lCIdvBlyNfIw=",
+  "Hash": "ZOl5e38bfjBworha4iqh64vvdkjavcyzsICt5eLoxDs=",
   "Source": "MusicLibraryApp",
   "BasePath": "_content/MusicLibraryApp",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\MusicLibraryApp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\indexStyle.css",
+      "SourceId": "MusicLibraryApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
+      "BasePath": "_content/MusicLibraryApp",
+      "RelativePath": "css/indexStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\indexStyle.css"
     },
     {
       "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\site.css",

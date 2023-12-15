@@ -1,10 +1,16 @@
-// Program.cs
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using MusicLibraryApp.Areas.Identity.Data;
 using MusicLibraryApp.Data;
+
+
+
+public class Program { 
+
+    public static async Task Main(string[] args) {
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
@@ -12,14 +18,14 @@ var connectionString = builder.Configuration.GetConnectionString("AuthDbContextC
 builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>();
 
-builder.Services.AddHttpClient(); // HttpClient'i ekleyin
+builder.Services.AddHttpClient(); // Add HttpClient
 builder.Services.AddSingleton<LastFmService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddRazorPages();
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -28,7 +34,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 6;
+    
 });
+
+builder.Services.AddSession(); // Add this line to configure session services
 
 var app = builder.Build();
 
@@ -47,9 +56,74 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseSession(); // Add this line to enable session state
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+using (var scope = app.Services.CreateScope())
+{
 
-app.Run();
+    var RoleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roles = new[] { "Admin", "Moderator", "User" };
+    foreach (var role in roles)
+    {
+        if (!await RoleManager.RoleExistsAsync(role))
+            await RoleManager.CreateAsync(new IdentityRole(role));
+    }
+ 
+}
+
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            string adminEmail = "admin@admin.com";
+            string adminPassword = "Admin123!";
+
+            string moderatorEmail = "moderator@moderator.com";
+            string moderatorPassword = "moderator123";
+
+            //  admin user hesabý yoksa oluþtur
+            if (await userManager.FindByEmailAsync(adminEmail) == null)
+            {
+                var adminUser = new ApplicationUser
+                {
+                    Email = adminEmail,
+                    UserName = adminEmail,
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                };
+
+                await userManager.CreateAsync(adminUser, adminPassword);
+                await userManager.AddToRoleAsync(adminUser, "Admin");
+            }
+
+            // Moderator user hesabý yoksa oluþtur
+            if (await userManager.FindByEmailAsync(moderatorEmail) == null)
+            {
+                var moderatorUser = new ApplicationUser
+                {
+                    Email = moderatorEmail,
+                    UserName = moderatorEmail,
+                    FirstName = "Moderator",
+                    LastName = "Moderator",
+                };
+
+                await userManager.CreateAsync(moderatorUser, moderatorPassword);
+                await userManager.AddToRoleAsync(moderatorUser, "Moderator");
+            }
+        }
+
+
+
+
+
+    
+
+
+    app.Run();
+    }
+}

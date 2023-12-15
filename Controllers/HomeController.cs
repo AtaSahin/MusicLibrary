@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MusicLibraryApp.Helpers;
 using MusicLibraryApp.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MusicLibraryApp.Controllers
@@ -25,10 +27,11 @@ namespace MusicLibraryApp.Controllers
 
 
 
-
-        public async Task<IActionResult> Index()
+      
+        public async Task<IActionResult> Index(int? limit)
         {
-            var topTracksJson = await _lastFmService.GetTopTracksAsync();
+            int songsLimit = limit ?? 8; // Default olarak 8 şarkı gösterilecek
+            var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
 
             if (topTracksJson != null)
             {
@@ -36,10 +39,15 @@ namespace MusicLibraryApp.Controllers
                 return View(tracks);
             }
 
-            return View(); // API'dan veri çekilemediği durumu
+            return View();
         }
 
-        private List<LastFmTrack> ConvertToYourModel(string topTracksJson)
+
+
+
+
+
+        private List<LastFmTrack>? ConvertToYourModel(string topTracksJson)
         {
             var tracksResponse = JsonConvert.DeserializeObject<LastFmApiResponse>(topTracksJson);
 
@@ -47,35 +55,71 @@ namespace MusicLibraryApp.Controllers
             {
                 Name = t.Name,
                 Artist = t.Artist?.Name,
-              
                 Url = t.Url,
                 Duration = t.Duration,
                 Playcount = t.Playcount,
                 Listeners = t.Listeners,
                 Mbid = t.Mbid,
-               
                 ImageUrlLarge = t.Image?.FirstOrDefault(i => i.Size == "large")?.Text,
-                Genres = t.Genres?.Split(',').ToList()
+
 
             }).ToList();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddToPlaylist(string trackId)
+
+       
+
+
+        //Playliste şarkı ekleme
+        public IActionResult AddToPlaylist(Track track)
         {
-            // Şarkıyı playliste ekleyebilir ve bildirim mesajını ekleyebilirsiniz.
-            // Bu örnekte TempData kullanılıyor, dilerseniz başka bir yöntem de kullanabilirsiniz.
+            var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
 
-            TempData["PlaylistMessage"] = "Şarkı playliste eklendi.";
+         
+            playlist.Tracks.Add(track);
 
-            // Diğer işlemleri gerçekleştirin (örneğin şarkıyı bir listeye ekleyin).
+            // Playlist session olarak kaydedildi
+            HttpContext.Session.SetObjectAsJson("Playlist", playlist);
 
-            return RedirectToAction("Index");
+            //Düzenlenen playlist sayfasına yönlendirildi fakat düzeltilecek...
+            return RedirectToAction("");
         }
-        public IActionResult Privacy()
+
+        // Playlistten şarkı çıkarma
+        public IActionResult RemoveFromPlaylist(int trackId)
         {
-            return View();
+            var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
+
+            var track = playlist.Tracks.FirstOrDefault(t => t.Id == trackId);
+
+            if (track != null)
+            {
+                playlist.Tracks.Remove(track);
+            }
+
+            // Playlist session olarak kaydedildi
+            HttpContext.Session.SetObjectAsJson("Playlist", playlist);
+
+            //Düzenlenen playlist sayfasına yönlendirildi
+            return RedirectToAction("ViewPlaylist");
         }
+
+        private Track GetTrackDetails(int trackId)
+        {
+          
+
+            return new Track {  };
+        }
+
+
+
+        public IActionResult ViewPlaylist()
+        {
+            var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
+            return View(playlist);
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

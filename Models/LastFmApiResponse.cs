@@ -25,6 +25,7 @@ public class LastFmApiTrack
     public int Listeners { get; set; }  // Şarkıyı dinleyen kişi sayısı
     public string Mbid { get; set; }  // Şarkının MusicBrainz kimliği
     public string Genres { get;  set; }
+    public string Tags { get; set; }
 }
 
 public class LastFmApiArtist
