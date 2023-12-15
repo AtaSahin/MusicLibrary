@@ -11,17 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <style>
+
+    </style>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white  box-shadow mb-3">
             <div class="container">
                 @if (User.IsInRole("Admin"))
                 {
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Index">
-                            <button class="btn btn-outline-primary">Role Assign</button>
+                            <button class="btn btn-outline-dark">Role Assign</button>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="RegistrationRequest" asp-action="Index">
+                            <button class="btn btn-outline-dark">Registration Requests</button>
+                        </a>
+                    </li>
+
+
                 }
+
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MusicLibraryApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +45,20 @@
         </nav>
     </header>
     <div class="container">
+        <div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p>Welcome, @User.Identity.Name!</p>
+                @if (User.IsInRole("Verified"))
+                {
+                    <p>You are a verified user.</p>
+                }
+                else
+                {
+                    <p>Your account is pending verification.</p>
+                }
+            }
+        </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

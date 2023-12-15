@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZOl5e38bfjBworha4iqh64vvdkjavcyzsICt5eLoxDs=",
+  "Hash": "TDIzMwxc5FZwrNQnfzGsbJ8w8WSccr62sPu1z5yAXg8=",
   "Source": "MusicLibraryApp",
   "BasePath": "_content/MusicLibraryApp",
   "Mode": "Default",
@@ -1195,6 +1195,25 @@
       "OriginalItemSpec": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\MusicLibraryApp.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\adminIndex.css",
+      "SourceId": "MusicLibraryApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
+      "BasePath": "_content/MusicLibraryApp",
+      "RelativePath": "css/adminIndex.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\adminIndex.css"
+    },
+    {
       "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\indexStyle.css",
       "SourceId": "MusicLibraryApp",
       "SourceType": "Discovered",
@@ -1250,6 +1269,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\js\\HomeIndex.js",
+      "SourceId": "MusicLibraryApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
+      "BasePath": "_content/MusicLibraryApp",
+      "RelativePath": "js/HomeIndex.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\HomeIndex.js"
     },
     {
       "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\js\\site.js",

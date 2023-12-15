@@ -3,9 +3,9 @@
 {
     @foreach (var track in Model)
     {
-        <!-- Render the additional tracks -->
+       
         <div class="song-card">
-            <img src="@track.ImageUrlLarge" alt="Cover Image (Large)" />
+            <img src="@track.ImageUrl" alt="Cover Image (Large)" />
             <h3>@track.Name</h3>
             <p>@track.Artist</p>
             <a href="@track.Url" target="_blank" class="play-button">&#9654;</a>

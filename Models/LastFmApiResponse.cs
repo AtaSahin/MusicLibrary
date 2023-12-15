@@ -1,11 +1,13 @@
 ﻿// Models/LastFmApiResponse.cs
 using System.Collections.Generic;
+using MusicLibraryApp.Models;
 using Newtonsoft.Json;
 
 public class LastFmApiResponse
 {
     [JsonProperty("tracks")]
     public LastFmApiTrackList Tracks { get; set; }
+
 }
 
 public class LastFmApiTrackList

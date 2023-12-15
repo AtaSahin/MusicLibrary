@@ -1,6 +1,6 @@
 ﻿body {
     background: rgb(3,1,5);
-    background: linear-gradient(360deg, rgba(3,1,5,1) 90%, rgba(36,4,74,1) 93%);
+    background: linear-gradient(360deg, rgba(3,1,5,1) 80%, rgba(36,4,74,1) 90%);
     color: #ffffff;
 }
 
@@ -27,16 +27,16 @@
     }
 
 .playlist-button {
-    background-color: #1db954;
+    background-color: black;
     border: none;
     color: #ffffff;
-    / padding: 10px;
+ 
     border-radius: 5px;
     cursor: pointer;
 }
 
     .playlist-button:hover {
-        background-color: #168f3a;
+        background-color: rgba(169, 169, 169, 0.3);
     }
 
 #searchTerm {
@@ -54,7 +54,7 @@
     }
 
 #searchButton {
-    background-color: #1db954;
+    background-color: rgba(169, 169, 169, 0.3);
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -86,7 +86,16 @@
     border-radius: 30px;
     float: right;
 }
-
+.add-play-btn {
+    background-color: rgba(169, 169, 169, 0.3);
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+    .add-play-btn:hover {
+        background-color: rgba(169, 169, 169, 0.5);
+    }
 
     .add-song-btn:hover {
         background-color: rgba(169, 169, 169, 0.5);

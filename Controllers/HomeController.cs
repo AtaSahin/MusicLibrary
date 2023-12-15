@@ -27,7 +27,7 @@ namespace MusicLibraryApp.Controllers
  
         public async Task<IActionResult> Index(int? limit)
         {
-            int songsLimit = limit ?? 8; // Default olarak 8 şarkı gösterilecek
+            int songsLimit = limit ?? 20; // Default olarak 20 şarkı gösterilecek
             var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
  
             if (topTracksJson != null)
@@ -52,7 +52,9 @@ namespace MusicLibraryApp.Controllers
                 Playcount = t.Playcount,
                 Listeners = t.Listeners,
                 Mbid = t.Mbid,
-                ImageUrlLarge = t.Image?.FirstOrDefault(i => i.Size == "large")?.Text,
+                Tags = t.Tags?.Split(',').ToList(),
+                ImageUrl = t.Image?.FirstOrDefault(predicate: i => i.Size == "medium")?.Text,
+                
 
             }).ToList();
         }
@@ -90,11 +92,7 @@ namespace MusicLibraryApp.Controllers
             return RedirectToAction("ViewPlaylist");
         }
 
-        private Track GetTrackDetails(int trackId)
-        {
 
-            return new Track { };
-        }
 
         public IActionResult ViewPlaylist()
         {

@@ -25,54 +25,19 @@
         <div class="form-group">
             <label for="searchTerm">Search:</label>
             <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="Enter your search term" />
-            <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+            <button type="submit" id="searchButton" class="btn btn-secondary">Search</button>
         </div>
     </form>
 
 
 
 
-    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Moderator")){
+    
     
     @section Scripts {
-      
-   
-        <script>
-            //Limiti arttırma fonksiyonu
-            function loadMore() {
-                var currentUrl = window.location.href;
-                var searchTerm = new URLSearchParams(window.location.search).get('searchTerm');
-
-              
-                var currentLimit = parseInt(sessionStorage.getItem('limit')) || 8;
-
-                
-                var newLimit = currentLimit + 1;
-
-                // Her basışta yeni bir URL oluştur...
-                var newUrl = currentUrl.replace('limit=' + currentLimit, 'limit=' + newLimit);
-
-                if (!newUrl.includes('limit=')) {
-                    newUrl += newUrl.includes('?') ? '&' : '?';
-                    newUrl += 'limit=' + newLimit;
-                }
-
-           
-                if (searchTerm) {
-                    newUrl += '&searchTerm=' + searchTerm;
-                }
-
-                // Session olarak verileri kaydet
-                sessionStorage.setItem('limit', newLimit);
-
-                // Sayfa yenileme
-                window.location.href = newUrl;
-            }
-
-        </script>
-
+        <script src="~/js/HomeIndex.js" type="text/javascript"></script>
     }
-    }
+
  
 
 
@@ -98,11 +63,12 @@
                 {
 
                     <div class="song-card">
-                        <img src="@track.ImageUrlLarge" alt="Cover Image (Large)" />
+                        <img src="@track.ImageUrl" alt="Cover Image (Large)" />
                         <h3>@track.Name</h3>
                         <p>@track.Artist</p>
                         <a href="@track.Url" target="_blank" class="play-button">&#9654;</a> 
                         <p>Genre: @track.Genres</p>
+                 
 
 
                         <form method="post" asp-action="AddToPlaylist">
@@ -111,9 +77,9 @@
                             <input type="hidden" name="Artist" value="@track.Artist" />
                             <input type="hidden" name="Url" value="@track.Url" />
                             <input type="hidden" name="Genres" value="@track.Genres" />
-                            <button type="submit" class="playlist-button">Playliste Ekle</button>
+                             <button type="submit" class="add-play-btn">Playliste Ekle</button>
                         </form>
-
+                      
 
                       
                     </div>
