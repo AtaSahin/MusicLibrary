@@ -13,7 +13,7 @@ public class LastFmTrack
     public string Genres { get; set; }
     public List<string> Tags { get; set; }
     public int PlaylistId { get; set; }
-    public string ImageUrlLarge { get; set; }   // Büyük boyutlu görsel URL
+   public string ImageUrl { get; set; }  
 
-}
+    }
 }

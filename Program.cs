@@ -69,6 +69,7 @@ public class Program
             var roles = new[] {
         "Admin",
         "Moderator",
+        "Verified",//Onaylý kullanýcý (Admin tarafýndan onaylanmýþ)
         "User"
       };
             foreach (var role in roles)

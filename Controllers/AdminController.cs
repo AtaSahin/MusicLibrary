@@ -23,10 +23,11 @@ public class AdminController : Controller
     public async Task<IActionResult> AssignModerator(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
-
+        //Kullanıcıyı moderator rolüne atama
         if (user != null)
         {
             await _userManager.AddToRoleAsync(user, "Moderator");
+            TempData["AssignModeratorMessage"] = $"{user} Successfully assigned as Moderator";
         }
 
         return RedirectToAction("Index");

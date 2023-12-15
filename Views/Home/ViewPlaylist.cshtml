@@ -25,7 +25,7 @@
                     <h3>@track.Name</h3>
                 <p>@track.Artist</p>
                 <a href="@track.Url" target="_blank" class="play-button">&#9654;</a>
-                <p>Genre: @track.Genres</p>
+                    <p>Genre: @track.Genres</p>
 
                 <form method="post" asp-action="RemoveFromPlayList">
                     <input type="hidden" name="Id" value="@track.Id" />
