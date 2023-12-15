@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MusicLibraryApp.Helpers;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MusicLibraryApp.Controllers
@@ -24,15 +24,12 @@ namespace MusicLibraryApp.Controllers
             _logger = logger;
             _lastFmService = lastFmService;
         }
-
-
-
-      
+ 
         public async Task<IActionResult> Index(int? limit)
         {
             int songsLimit = limit ?? 8; // Default olarak 8 şarkı gösterilecek
             var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
-
+ 
             if (topTracksJson != null)
             {
                 var tracks = ConvertToYourModel(topTracksJson);
@@ -41,11 +38,6 @@ namespace MusicLibraryApp.Controllers
 
             return View();
         }
-
-
-
-
-
 
         private List<LastFmTrack>? ConvertToYourModel(string topTracksJson)
         {
@@ -62,20 +54,14 @@ namespace MusicLibraryApp.Controllers
                 Mbid = t.Mbid,
                 ImageUrlLarge = t.Image?.FirstOrDefault(i => i.Size == "large")?.Text,
 
-
             }).ToList();
         }
-
-
-       
-
 
         //Playliste şarkı ekleme
         public IActionResult AddToPlaylist(Track track)
         {
             var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
 
-         
             playlist.Tracks.Add(track);
 
             // Playlist session olarak kaydedildi
@@ -106,12 +92,9 @@ namespace MusicLibraryApp.Controllers
 
         private Track GetTrackDetails(int trackId)
         {
-          
 
-            return new Track {  };
+            return new Track { };
         }
-
-
 
         public IActionResult ViewPlaylist()
         {
@@ -119,15 +102,15 @@ namespace MusicLibraryApp.Controllers
             return View(playlist);
         }
 
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
-    
-    }
 
+    }
 
 }
