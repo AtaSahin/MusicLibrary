@@ -23,7 +23,60 @@
         </div>
     </form>
 
+  
 
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Moderator"))
+    {
+        <button onclick="loadMore()" class="btn btn-primary">Load More</button>
+   
+
+    @section Scripts {
+        <script>
+            //Limiti arttırma fonksiyonu
+            function loadMore() {
+                var currentUrl = window.location.href;
+                var searchTerm = new URLSearchParams(window.location.search).get('searchTerm');
+
+              
+                var currentLimit = parseInt(sessionStorage.getItem('limit')) || 8;
+
+                
+                var newLimit = currentLimit + 1;
+
+                // Her basışta yeni bir URL oluştur...
+                var newUrl = currentUrl.replace('limit=' + currentLimit, 'limit=' + newLimit);
+
+                if (!newUrl.includes('limit=')) {
+                    newUrl += newUrl.includes('?') ? '&' : '?';
+                    newUrl += 'limit=' + newLimit;
+                }
+
+           
+                if (searchTerm) {
+                    newUrl += '&searchTerm=' + searchTerm;
+                }
+
+                // Session olarak verileri kaydet
+                sessionStorage.setItem('limit', newLimit);
+
+                // Sayfa yenileme
+                window.location.href = newUrl;
+            }
+        </script>
+    }
+
+    }
+
+
+
+    @if (!string.IsNullOrEmpty(Context.Request.Query["searchTerm"]))
+    {
+        <h2>Search Results for "@Context.Request.Query["searchTerm"]"</h2>
+    }
+
+
+  
     @if (Model != null && Model.Any())
     {
         <div class="song-container">

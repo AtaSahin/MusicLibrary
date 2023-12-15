@@ -1,0 +1,26 @@
+﻿@model List<LastFmTrack>
+@if (Model != null)
+{
+    @foreach (var track in Model)
+    {
+        <!-- Render the additional tracks -->
+        <div class="song-card">
+            <img src="@track.ImageUrlLarge" alt="Cover Image (Large)" />
+            <h3>@track.Name</h3>
+            <p>@track.Artist</p>
+            <a href="@track.Url" target="_blank" class="play-button">&#9654;</a>
+            <p>Genre: @track.Genres</p>
+
+
+            <form method="post" asp-action="AddToPlaylist">
+                <input type="hidden" name="Id" value="@track.Id" />
+                <input type="hidden" name="Name" value="@track.Name" />
+                <input type="hidden" name="Artist" value="@track.Artist" />
+                <input type="hidden" name="Url" value="@track.Url" />
+                <input type="hidden" name="Genres" value="@track.Genres" />
+                <button type="submit" class="playlist-button">Playliste Ekle</button>
+            </form>
+
+        </div>
+    }
+}

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MusicLibraryApp.Controllers
@@ -26,10 +27,11 @@ namespace MusicLibraryApp.Controllers
 
 
 
-
-        public async Task<IActionResult> Index()
+      
+        public async Task<IActionResult> Index(int? limit)
         {
-            var topTracksJson = await _lastFmService.GetTopTracksAsync();
+            int songsLimit = limit ?? 8; // Default olarak 8 şarkı gösterilecek
+            var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
 
             if (topTracksJson != null)
             {
@@ -37,8 +39,13 @@ namespace MusicLibraryApp.Controllers
                 return View(tracks);
             }
 
-            return View(); // API'dan veri çekilemediği durumu - Fail durumu
+            return View();
         }
+
+
+
+
+
 
         private List<LastFmTrack>? ConvertToYourModel(string topTracksJson)
         {
@@ -60,7 +67,7 @@ namespace MusicLibraryApp.Controllers
         }
 
 
-
+       
 
 
         //Playliste şarkı ekleme
