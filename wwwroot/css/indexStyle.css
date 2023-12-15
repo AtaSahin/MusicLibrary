@@ -78,3 +78,18 @@
     .btn-transparent:hover {
         background-color: rgba(169, 169, 169, 0.5);
     }
+.add-song-btn {
+    background-color: rgba(169, 169, 169, 0.3);
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    float: right;
+}
+
+
+    .add-song-btn:hover {
+        background-color: rgba(169, 169, 169, 0.5);
+    }
+
+}
