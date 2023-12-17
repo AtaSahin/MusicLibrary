@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using MusicLibraryApp.Areas.Identity.Data;
 using System.Linq;
+using MusicLibraryApp.Controllers;
 
 [Authorize(Roles = "Admin")] // Admin rolüne sahip kullanıcılar için sınırlama
+
+[RateLimit]
 public class AdminController : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager;
@@ -20,6 +23,7 @@ public class AdminController : Controller
         return View(users);
     }
     [HttpPost]
+   
     public async Task<IActionResult> AssignModerator(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);

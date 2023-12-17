@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicLibraryApp.Areas.Identity.Data;
 using MusicLibraryApp.Data;
+using AspNetCoreRateLimit;
 
 namespace MusicLibraryApp.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [RateLimit]
     public class RegistrationRequestController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -31,7 +33,7 @@ namespace MusicLibraryApp.Controllers
             return View(registrationRequests);
         }
 
-
+      
         public async Task<IActionResult> Approve(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
