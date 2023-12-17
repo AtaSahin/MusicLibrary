@@ -10,6 +10,8 @@ MusicLibraryApp is a .NET Core 7 web application that leverages the Last.fm API 
 - Role-based Authorization (Admin, Moderator, Verified User, User)
 - Last.fm API Integration for Music Track Information
 - Playlist Management (Add, Remove Songs)
+- Email Service
+- Roles (Admin,Moderator,Verified User,User,Rejected User)
 - Admin Capabilities:
   - Assigning Users as Verified
   - Assigning Roles (Admin, Moderator)
@@ -20,6 +22,10 @@ MusicLibraryApp is a .NET Core 7 web application that leverages the Last.fm API 
 - User Capabilities:
   - Creating and Managing Playlists
   - Adding and Removing Songs from Playlists
+- Verified User Capabilities:
+  - Completely same as with "User" but They have "Verified" badge
+- Rejected User:
+  - Can not view any feature of the application except "Warning Page"
  
 
 ## Technologies Used
