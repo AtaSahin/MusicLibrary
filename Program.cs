@@ -72,7 +72,8 @@ public class Program
         "Admin",
         "Moderator",
         "Verified",//Onaylý kullanýcý (Admin tarafýndan onaylanmýþ)
-        "User"
+        "User",
+        "Rejected User" //Reddedilmiþ kullanýcý (Admin tarafýndan reddedilmiþ)
       };
             foreach (var role in roles)
             {
