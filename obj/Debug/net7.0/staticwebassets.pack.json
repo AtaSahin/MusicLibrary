@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\indexStyle.css"
     },
     {
+      "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\playListStyles.css",
+      "PackagePath": "staticwebassets\\css\\playListStyles.css"
+    },
+    {
       "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
