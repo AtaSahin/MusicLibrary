@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TDIzMwxc5FZwrNQnfzGsbJ8w8WSccr62sPu1z5yAXg8=",
+  "Hash": "EDrwARNLvc8qwdIh9zzadhMKS4kQzimn/YawlTK3w1A=",
   "Source": "MusicLibraryApp",
   "BasePath": "_content/MusicLibraryApp",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\indexStyle.css"
+    },
+    {
+      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\playListStyles.css",
+      "SourceId": "MusicLibraryApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
+      "BasePath": "_content/MusicLibraryApp",
+      "RelativePath": "css/playListStyles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\playListStyles.css"
     },
     {
       "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\site.css",

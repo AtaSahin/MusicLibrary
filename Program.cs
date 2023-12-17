@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MusicLibraryApp;
 using MusicLibraryApp.Areas.Identity.Data;
 using MusicLibraryApp.Data;
-
+using MusicLibraryApp.Controllers;
 public class Program
 {
 
@@ -13,6 +14,7 @@ public class Program
     {
 
         var builder = WebApplication.CreateBuilder(args);
+      
         var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ??
           throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
 
@@ -21,8 +23,8 @@ public class Program
         builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
           .AddRoles<IdentityRole>()
           .AddEntityFrameworkStores<AuthDbContext>();
-
-        builder.Services.AddHttpClient(); // Add HttpClient
+        builder.Services.AddTransient<IEmailService, SmtpEmailService>();
+        builder.Services.AddHttpClient(); 
         builder.Services.AddSingleton<LastFmService>();
 
         // Add services to the container.
@@ -37,7 +39,7 @@ public class Program
 
         });
 
-        builder.Services.AddSession(); // Add this line to configure session services
+        builder.Services.AddSession(); 
 
         var app = builder.Build();
 
@@ -56,7 +58,7 @@ public class Program
 
         app.UseAuthorization();
 
-        app.UseSession(); // Add this line to enable session state
+        app.UseSession(); 
 
         app.MapControllerRoute(
           name: "default",

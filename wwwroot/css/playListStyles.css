@@ -1,6 +1,6 @@
 ﻿body {
     background: rgb(3,1,5);
-    background: linear-gradient(360deg, rgba(3,1,5,1) 80%, rgba(36,4,74,1) 90%);
+    background: linear-gradient(360deg, rgba(3,1,5,1) 22%, rgba(36,4,74,2) 90%);
     color: #ffffff;
 }
 
@@ -30,7 +30,6 @@
     background-color: black;
     border: none;
     color: #ffffff;
- 
     border-radius: 5px;
     cursor: pointer;
 }
@@ -59,9 +58,8 @@
     border: none;
     border-radius: 5px;
     padding: 10px;
-    top:30 px;
-
-    margin:20px;
+    margin: 20px;
+    cursor: pointer;
 }
 
     #searchButton:hover {
@@ -80,14 +78,9 @@
     .btn-transparent:hover {
         background-color: rgba(169, 169, 169, 0.5);
     }
-.add-song-btn {
-    background-color: rgba(169, 169, 169, 0.3);
-    border: none;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 30px;
-    float: right;
-}
+
+
+
 .add-play-btn {
     background-color: rgba(169, 169, 169, 0.3);
     border: none;
@@ -95,12 +88,10 @@
     padding: 10px 20px;
     border-radius: 30px;
 }
+
     .add-play-btn:hover {
         background-color: rgba(169, 169, 169, 0.5);
     }
 
-    .add-song-btn:hover {
-        background-color: rgba(169, 169, 169, 0.5);
-    }
 
 }
