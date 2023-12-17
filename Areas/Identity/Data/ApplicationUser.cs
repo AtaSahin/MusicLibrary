@@ -11,7 +11,7 @@ namespace MusicLibraryApp.Areas.Identity.Data;
 public class ApplicationUser : IdentityUser
 
 {
-  
+    public bool IsDeleted { get; set; }
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string FirstName { get; set; }

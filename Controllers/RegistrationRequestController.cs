@@ -27,9 +27,10 @@ namespace MusicLibraryApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var registrationRequests = await _context.Users.ToListAsync();
+            var registrationRequests = await _context.Users.Where(u => !u.IsDeleted).ToListAsync();
             return View(registrationRequests);
         }
+
 
         public async Task<IActionResult> Approve(string id)
         {
@@ -57,7 +58,13 @@ namespace MusicLibraryApp.Controllers
 
             if (user != null)
             {
-                await _userManager.DeleteAsync(user);
+                await _userManager.AddToRoleAsync(user, "Rejected User");
+                user.EmailConfirmed = false;
+                await _userManager.UpdateAsync(user);
+
+
+                user.IsDeleted = true;
+                await _userManager.UpdateAsync(user);
 
                 // Rejected mesajı gönder
                 await _emailService.SendEmailAsync(user.Email, "Account Rejected", "Your account has been rejected by admin.");

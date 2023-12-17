@@ -1,8 +1,6 @@
 ﻿@model List<LastFmTrack>
 
-@{
-    ViewData["Title"] = "Home Page";
-}
+
 
 @section Styles {
     <link rel="stylesheet" href="~/css/indexStyle.css" />
@@ -12,6 +10,21 @@
 {
     <button onclick="loadMore()" class="add-song-btn">Add More Song</button>
 }
+
+@{
+    bool isRejectedUser = User.IsInRole("Rejected User");
+}
+@if (isRejectedUser)
+{
+    <h1>Your access to the application has been restricted by the admin.</h1>
+    <p>If you have any questions, please emailata8@gmail.com  contact the admin.</p>
+
+
+
+
+}
+else
+{
 <div class="btn-container">
     <a href="@Url.Action("ViewPlaylist", "Home", new { playlistId = 1 })" class="btn btn-transparent">Sample Playlist</a>
 </div>
@@ -94,3 +107,4 @@
         <p>No tracks available.</p>
     }
 </div>
+}
