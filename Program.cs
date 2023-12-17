@@ -7,6 +7,8 @@ using MusicLibraryApp;
 using MusicLibraryApp.Areas.Identity.Data;
 using MusicLibraryApp.Data;
 using MusicLibraryApp.Controllers;
+using AspNetCoreRateLimit;
+
 public class Program
 {
 
@@ -38,10 +40,33 @@ public class Program
             options.Password.RequiredLength = 6;
 
         });
+        // Rate Limit Kütphane Konfigürasyonlarý
+        builder.Services.AddMemoryCache();
+        builder.Services.Configure<IpRateLimitOptions>(options =>
+        {
+            options.GeneralRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Limit = 20, 
+                    Period = "1m" // 5 dakikada 5 istek
+                }
+            };
+        });
+
+        builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+        builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+        builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+        builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+
+        // Session Kütüphanesi Konfigürasyonlarý
 
         builder.Services.AddSession(); 
 
         var app = builder.Build();
+ 
+        app.UseIpRateLimiting();
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
@@ -123,6 +148,7 @@ public class Program
                 await userManager.AddToRoleAsync(moderatorUser, "Moderator");
             }
         }
+     
 
         app.Run();
     }

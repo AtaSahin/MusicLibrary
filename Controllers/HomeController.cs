@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace MusicLibraryApp.Controllers
 {
     [Authorize]
+    [RateLimit]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -60,6 +61,7 @@ namespace MusicLibraryApp.Controllers
         }
 
         //Playliste şarkı ekleme
+  
         public IActionResult AddToPlaylist(Track track)
         {
             var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();

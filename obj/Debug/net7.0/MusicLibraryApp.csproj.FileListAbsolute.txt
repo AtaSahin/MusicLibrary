@@ -265,3 +265,4 @@ C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\RestSharp.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\System.Text.Encodings.Web.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\System.Text.Json.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\AspNetCoreRateLimit.dll
