@@ -11,6 +11,7 @@ MusicLibraryApp is a .NET Core 7 web application that leverages the Last.fm API 
 - Last.fm API Integration for Music Track Information
 - Playlist Management (Add, Remove Songs)
 - Email Service
+- English and Turkish Language options
 - Roles (Admin,Moderator,Verified User,User,Rejected User)
 - Admin Capabilities:
   - Assigning Users as Verified
