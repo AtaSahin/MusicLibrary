@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\MusicLibraryApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\MusicAppLogo.png",
+      "PackagePath": "staticwebassets\\MusicAppLogo.png"
+    },
+    {
       "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\css\\adminIndex.css",
       "PackagePath": "staticwebassets\\css\\adminIndex.css"
     },
@@ -23,6 +27,10 @@
     {
       "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico.png",
+      "PackagePath": "staticwebassets\\favicon.ico.png"
     },
     {
       "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\js\\HomeIndex.js",

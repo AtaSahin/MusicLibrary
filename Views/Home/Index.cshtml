@@ -8,7 +8,7 @@
 
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Moderator"))
 {
-    <button onclick="loadMore()" class="add-song-btn">Add More Song</button>
+    <button onclick="loadMore()" class="add-song-btn">@_localization.Getkey("AddMoreSong").Value</button>
 }
 
 @{
@@ -16,29 +16,29 @@
 }
 @if (isRejectedUser)
 {
-    <h1>Your access to the application has been restricted by the admin.</h1>
-    <p>If you have any questions, please emailata8@gmail.com  contact the admin.</p>
+    <h1>@_localization.Getkey("RestrictedMessage").Value</h1>
+    <p> @_localization.Getkey("RestrictedMessageContact").Value</p>
 
-
+   
 
 
 }
 else
 {
 <div class="btn-container">
-    <a href="@Url.Action("ViewPlaylist", "Home", new { playlistId = 1 })" class="btn btn-transparent">Sample Playlist</a>
+        <a href="@Url.Action("ViewPlaylist", "Home", new { playlistId = 1 })" class="btn btn-transparent">@_localization.Getkey("SamplePlayList").Value</a>
 </div>
 
 <div class="text-center">
-
-    <h1 class="display-8">Good afternoon</h1>
+    <h5 class="display-6">@_localization.Getkey("Welcome").Value</h5>
+    
   
 
     <form method="get">
         <div class="form-group">
-            <label for="searchTerm">Search:</label>
-            <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="Enter your search term" />
-            <button type="submit" id="searchButton" class="btn btn-secondary">Search</button>
+           
+                <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder=@_localization.Getkey("SearchTermPlaceHolder").Value />
+                <button type="submit" id="searchButton" class="btn btn-secondary">@_localization.Getkey("SearchBtn").Value</button>
         </div>
     </form>
 
@@ -90,7 +90,7 @@ else
                             <input type="hidden" name="Artist" value="@track.Artist" />
                             <input type="hidden" name="Url" value="@track.Url" />
                             <input type="hidden" name="Genres" value="@track.Genres" />
-                             <button type="submit" class="add-play-btn">Playliste Ekle</button>
+                                <button type="submit" class="add-play-btn">@_localization.Getkey("AddPlayList").Value</button>
                         </form>
                       
 
@@ -104,7 +104,7 @@ else
     }
     else
     {
-        <p>No tracks available.</p>
+            <p>@_localization.Getkey("NoTracksAvalible").Value</p>
     }
 </div>
 }

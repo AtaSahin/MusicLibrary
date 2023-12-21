@@ -41,17 +41,17 @@
     <div class="col-md-10">
         <section>
             <form id="account" method="post">
-                <h2 style="color:white">Use a local account to log in.</h2>
+                <h2 style="color:white">@_localization.Getkey("LoginText").Value</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="@_localization.Getkey("EmailLoginTxt").Value" />
+                    <label asp-for="Input.Email" class="form-label">@_localization.Getkey("EmailLoginTxt").Value</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="@_localization.Getkey("PasswordLoginTxt").Value" />
+                    <label asp-for="Input.Password" class="form-label">@_localization.Getkey("PasswordLoginTxt").Value</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="checkbox mb-3">
@@ -61,7 +61,7 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">@_localization.Getkey("LoginBtn").Value</button>
                 </div>
             </form>
         </section>

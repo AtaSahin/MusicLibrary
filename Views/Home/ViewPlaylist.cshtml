@@ -3,12 +3,12 @@
     <link rel="stylesheet" href="~/css/playListStyles.css" />
 }
 
-<h1>Your Playlist</h1>
+<h1>@_localization.Getkey("YourPlaylist").Value</h1>
 <form method="get">
     <div class="form-group">
-        <label for="searchTerm">Search:</label>
-        <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="Enter your search term" />
-        <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+     
+        <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="@_localization.Getkey("SearchTermPlaceHolder").Value" />
+        <button type="submit" id="searchButton" class="btn btn-primary">@_localization.Getkey("SearchBtn").Value</button>
     </div>
 </form>
 
@@ -34,19 +34,19 @@
                     <input type="hidden" name="Artist" value="@track.Artist" />
                     <input type="hidden" name="Url" value="@track.Url" />
                     <input type="hidden" name="Genres" value="@track.Genres" />
-                    <button type="submit" class="playlist-button">Remove From Playlist</button>
+                        <button type="submit" class="playlist-button">@_localization.Getkey("RemoveFromPlaylist").Value</button>
                 </form>
             </div>
             }
             else
             {
-                <p>Couldn't find this sing/singer from your Playlist</p>
+                <p>@_localization.Getkey("CouldntFound").Value</p>
             }
         }
     </div>
 }
 else
 {
-    <p>No tracks in the playlist.</p>
+    <p>@_localization.Getkey("NoTracksAvalible").Value</p>
 }
 </div>
