@@ -8,6 +8,11 @@ using MusicLibraryApp.Areas.Identity.Data;
 using MusicLibraryApp.Data;
 using MusicLibraryApp.Controllers;
 using AspNetCoreRateLimit;
+using MusicLibraryApp.Service;
+using System.Reflection;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 public class Program
 {
@@ -16,7 +21,30 @@ public class Program
     {
 
         var builder = WebApplication.CreateBuilder(args);
-      
+        #region Localizer
+        builder.Services.AddSingleton<LanguageService>();
+        builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+        builder.Services.AddMvc()
+            .AddViewLocalization()
+            .AddDataAnnotationsLocalization(options => options.DataAnnotationLocalizerProvider=(type,factory)=>
+            {
+               var assemblyName = new AssemblyName(typeof(SharedResource).GetTypeInfo().Assembly.FullName);
+                return factory.Create(nameof(SharedResource),assemblyName.Name);
+            });
+        builder.Services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("tr-TR"),
+            };
+          
+            options.DefaultRequestCulture = new RequestCulture(culture: "tr-TR",uiCulture:"tr-TR");
+            options.SupportedCultures = supportedCultures;
+            options.SupportedUICultures = supportedCultures;
+            options.RequestCultureProviders.Insert(0,new QueryStringRequestCultureProvider());
+        });
+
         var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ??
           throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
 
@@ -49,7 +77,7 @@ public class Program
                 new RateLimitRule
                 {
                     Endpoint = "*",
-                    Limit = 20, 
+                    Limit = 200, 
                     Period = "1m" // 5 dakikada 5 istek
                 }
             };
@@ -77,7 +105,10 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
         app.UseStaticFiles();
+
+        app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
         app.UseRouting();
 
@@ -153,3 +184,4 @@ public class Program
         app.Run();
     }
 }
+#endregion

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MusicLibraryApp.Helpers;
 using MusicLibraryApp.Models;
+using MusicLibraryApp.Service;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,15 +21,35 @@ namespace MusicLibraryApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly LastFmService _lastFmService;
-
+        private  LanguageService _localization;
         public HomeController(ILogger<HomeController> logger, LastFmService lastFmService)
         {
             _logger = logger;
             _lastFmService = lastFmService;
         }
- 
+
+        // Dil değiştirme
+        public IActionResult ChangeLanguage(string culture)
+        {
+         Response.Cookies.Append(
+                         CookieRequestCultureProvider.DefaultCookieName,
+                                     CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                                                 new CookieOptions { 
+                                                     Expires = DateTimeOffset.UtcNow.AddYears(1) // 1 yıl boyunca cookie geçerli olacak
+           });
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+
+        public IActionResult Index1()
+        {
+            ViewBag.Welcome = _localization.Getkey("Welcome").Value;
+            var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
+            return View();
+        }
         public async Task<IActionResult> Index(int? limit)
         {
+           
             int songsLimit = limit ?? 20; // Default olarak 20 şarkı gösterilecek
             var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
  

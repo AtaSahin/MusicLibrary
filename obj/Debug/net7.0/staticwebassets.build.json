@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EDrwARNLvc8qwdIh9zzadhMKS4kQzimn/YawlTK3w1A=",
+  "Hash": "RkLP2bPNm3CZWavcIpCijPVHyMZ/rT2qjFQSRv2xXnI=",
   "Source": "MusicLibraryApp",
   "BasePath": "_content/MusicLibraryApp",
   "Mode": "Default",
@@ -1290,6 +1290,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico.png",
+      "SourceId": "MusicLibraryApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
+      "BasePath": "_content/MusicLibraryApp",
+      "RelativePath": "favicon.ico.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico.png"
+    },
+    {
       "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\js\\HomeIndex.js",
       "SourceId": "MusicLibraryApp",
       "SourceType": "Discovered",
@@ -2409,6 +2428,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\MusicAppLogo.png",
+      "SourceId": "MusicLibraryApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
+      "BasePath": "_content/MusicLibraryApp",
+      "RelativePath": "MusicAppLogo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\MusicAppLogo.png"
     }
   ]
 }
