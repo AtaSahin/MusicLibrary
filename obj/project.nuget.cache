@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YeNSX+OyxZaN+AGiXgDi7VMsd7T33NcJAw7iTF4x2RW+TvkoY37TRGZxrNL13t/anpaGgX+IQArSjsaDEpJ3zg==",
+  "dgSpecHash": "4JJyMIHMoZN8UxAeEQddTZVwL5D8pfzJUHvPFLZFZNk48SJrjfvJtDRyz8D983F81zN13PIQQ2DkTezRcmNSzg==",
   "success": true,
   "projectFilePath": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\MusicLibraryApp.csproj",
   "expectedPackageFiles": [
@@ -169,6 +169,9 @@
     "C:\\Users\\90545\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\90545\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\90545\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
+    "C:\\Users\\90545\\.nuget\\packages\\nlog\\5.2.7\\nlog.5.2.7.nupkg.sha512",
+    "C:\\Users\\90545\\.nuget\\packages\\nlog.extensions.logging\\5.3.7\\nlog.extensions.logging.5.3.7.nupkg.sha512",
+    "C:\\Users\\90545\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.7\\nlog.web.aspnetcore.5.3.7.nupkg.sha512",
     "C:\\Users\\90545\\.nuget\\packages\\nuget.common\\6.6.1\\nuget.common.6.6.1.nupkg.sha512",
     "C:\\Users\\90545\\.nuget\\packages\\nuget.configuration\\6.6.1\\nuget.configuration.6.6.1.nupkg.sha512",
     "C:\\Users\\90545\\.nuget\\packages\\nuget.dependencyresolver.core\\6.6.1\\nuget.dependencyresolver.core.6.6.1.nupkg.sha512",

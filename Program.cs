@@ -14,14 +14,23 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using AutoMapper;
+using NLog;
+using NLog.Web;
 public class Program
 {
 
     public static async Task Main(string[] args)
     {
+      
+        
+
 
         var builder = WebApplication.CreateBuilder(args);
-
+        var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+        logger.Debug("init main");
+        try { 
+        builder.Logging.ClearProviders();
+        builder.Host.UseNLog();
         builder.Services.AddAutoMapper(typeof(Program));
         #region Localizer
         builder.Services.AddSingleton<LanguageService>();
@@ -185,6 +194,15 @@ public class Program
      
 
         app.Run();
+        }
+        catch (Exception ex)
+        {
+            logger.Error(ex);
+        }
+        finally
+        {
+            LogManager.Shutdown();
+        }
     }
 }
 #endregion
