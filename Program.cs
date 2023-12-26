@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
-
+using AutoMapper;
 public class Program
 {
 
@@ -21,8 +21,11 @@ public class Program
     {
 
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddAutoMapper(typeof(Program));
         #region Localizer
         builder.Services.AddSingleton<LanguageService>();
+      
         builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
         builder.Services.AddMvc()
             .AddViewLocalization()

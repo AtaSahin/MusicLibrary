@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RkLP2bPNm3CZWavcIpCijPVHyMZ/rT2qjFQSRv2xXnI=",
+  "Hash": "V4NZkr+XveH77JVDoY4zRznd0p6FzPNaPUXYNs4faHo=",
   "Source": "MusicLibraryApp",
   "BasePath": "_content/MusicLibraryApp",
   "Mode": "Default",
@@ -1269,25 +1269,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico",
-      "SourceId": "MusicLibraryApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\",
-      "BasePath": "_content/MusicLibraryApp",
-      "RelativePath": "favicon.ico",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
       "Identity": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico.png",

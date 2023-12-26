@@ -12,6 +12,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
+using MusicLibraryApp.Dto;
 
 namespace MusicLibraryApp.Controllers
 {
@@ -21,11 +23,13 @@ namespace MusicLibraryApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly LastFmService _lastFmService;
+        private readonly IMapper _mapper;
         private  LanguageService _localization;
-        public HomeController(ILogger<HomeController> logger, LastFmService lastFmService)
+        public HomeController(ILogger<HomeController> logger, LastFmService lastFmService, IMapper mapper)
         {
             _logger = logger;
             _lastFmService = lastFmService;
+            _mapper = mapper;
         }
 
         // Dil değiştirme
@@ -86,10 +90,13 @@ namespace MusicLibraryApp.Controllers
   
         public IActionResult AddToPlaylist(Track track)
         {
+            // Track sınıfı TrackDTO sınıfına dönüştü
+            var trackDTO = _mapper.Map<TrackDTO>(track);
+
             var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
 
-            playlist.Tracks.Add(track);
-
+            playlist.TrackDTOs.Add(trackDTO);
+     
             // Playlist session olarak kaydedildi
             HttpContext.Session.SetObjectAsJson("Playlist", playlist);
 

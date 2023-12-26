@@ -25,10 +25,6 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
-    },
-    {
       "Id": "C:\\Users\\90545\\source\\repos\\MusicLibraryApp\\wwwroot\\favicon.ico.png",
       "PackagePath": "staticwebassets\\favicon.ico.png"
     },
