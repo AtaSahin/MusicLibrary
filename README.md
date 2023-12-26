@@ -36,6 +36,11 @@ MusicLibraryApp is a .NET Core 7 web application that leverages the Last.fm API 
 - HTML/CSS
 - Bootstrap
 - JS
+## Popular Libraries Used
+- RateLimit
+- AutoMapper
+- Localization
+- RestSharp
 
 ## Prerequisites
 
