@@ -276,3 +276,6 @@ C:\Users\90545\source\repos\MusicLibraryApp\obj\Debug\net7.0\en-US\MusicLibraryA
 C:\Users\90545\source\repos\MusicLibraryApp\obj\Debug\net7.0\tr-TR\MusicLibraryApp.resources.dll
 C:\Users\90545\source\repos\MusicLibraryApp\obj\Debug\net7.0\MusicLibraryApp.Resources.SharedResource.en-US.resources
 C:\Users\90545\source\repos\MusicLibraryApp\obj\Debug\net7.0\MusicLibraryApp.Resources.SharedResource.tr-TR.resources
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\RabbitMQ.Client.dll

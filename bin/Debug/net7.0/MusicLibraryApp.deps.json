@@ -9,6 +9,8 @@
       "MusicLibraryApp/1.0.0": {
         "dependencies": {
           "AspNetCoreRateLimit": "5.0.0",
+          "AutoMapper": "12.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.12",
           "Microsoft.AspNetCore.Identity.UI": "7.0.12",
@@ -17,6 +19,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.11",
+          "RabbitMQ.Client": "6.8.1",
           "RestSharp": "110.2.0",
           "System.Net.Http": "4.3.4",
           "System.Text.Json": "8.0.0"
@@ -27,9 +30,6 @@
         "resources": {
           "en-US/MusicLibraryApp.resources.dll": {
             "locale": "en-US"
-          },
-          "fr-FR/MusicLibraryApp.resources.dll": {
-            "locale": "fr-FR"
           },
           "tr-TR/MusicLibraryApp.resources.dll": {
             "locale": "tr-TR"
@@ -47,6 +47,29 @@
           "lib/net6.0/AspNetCoreRateLimit.dll": {
             "assemblyVersion": "4.0.2.0",
             "fileVersion": "4.0.2.0"
+          }
+        }
+      },
+      "AutoMapper/12.0.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "Microsoft.Extensions.Options": "7.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
           }
         }
       },
@@ -765,7 +788,7 @@
       },
       "Microsoft.AspNetCore.JsonPatch/2.2.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
@@ -1379,7 +1402,7 @@
           }
         }
       },
-      "Microsoft.CSharp/4.5.0": {},
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Data.SqlClient/5.1.1": {
         "dependencies": {
           "Azure.Identity": "1.7.0",
@@ -1745,7 +1768,7 @@
       },
       "Microsoft.IdentityModel.Tokens/6.24.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "Microsoft.IdentityModel.Logging": "6.24.0",
           "System.Security.Cryptography.Cng": "5.0.0"
         },
@@ -2079,6 +2102,18 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {
             "assemblyVersion": "6.6.1.2",
             "fileVersion": "6.6.1.2"
+          }
+        }
+      },
+      "RabbitMQ.Client/6.8.1": {
+        "dependencies": {
+          "System.Memory": "4.5.5",
+          "System.Threading.Channels": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.8.1.0"
           }
         }
       },
@@ -2875,6 +2910,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
+      "System.Threading.Channels/7.0.0": {},
       "System.Threading.Tasks/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.1",
@@ -2959,6 +2995,20 @@
       "sha512": "sha512-6fq9+o1maGADUmpK/PvcF0DtXW2+7bSkIL7MDIo/agbIHKN8XkMQF4oze60DO731WaQmHmK260hB30FwPzCmEg==",
       "path": "aspnetcoreratelimit/5.0.0",
       "hashPath": "aspnetcoreratelimit.5.0.0.nupkg.sha512"
+    },
+    "AutoMapper/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "path": "automapper/12.0.1",
+      "hashPath": "automapper.12.0.1.nupkg.sha512"
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512"
     },
     "Azure.Core/1.25.0": {
       "type": "package",
@@ -3681,12 +3731,12 @@
       "path": "microsoft.codeanalysis.workspaces.common/4.4.0",
       "hashPath": "microsoft.codeanalysis.workspaces.common.4.4.0.nupkg.sha512"
     },
-    "Microsoft.CSharp/4.5.0": {
+    "Microsoft.CSharp/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
-      "path": "microsoft.csharp/4.5.0",
-      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Data.SqlClient/5.1.1": {
       "type": "package",
@@ -4156,6 +4206,13 @@
       "sha512": "sha512-Wm/AOFICTIrCgbVxv9dNWusraTzcggbo5W4ao7hD8NNVq911an9TGwW+uNuYc8I5PkpTeMuSXneV2u6hbi1P4w==",
       "path": "nuget.versioning/6.6.1",
       "hashPath": "nuget.versioning.6.6.1.nupkg.sha512"
+    },
+    "RabbitMQ.Client/6.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jNsmGgmCNw2S/NzskeN2ijtGywtH4Sk/G6jWUTD5sY9SrC27Xz6BsLIiB8hdsfjeyWCa4j4GvCIGkpE8wrjU1Q==",
+      "path": "rabbitmq.client/6.8.1",
+      "hashPath": "rabbitmq.client.6.8.1.nupkg.sha512"
     },
     "RestSharp/110.2.0": {
       "type": "package",
@@ -4828,6 +4885,13 @@
       "sha512": "sha512-VkUS0kOBcUf3Wwm0TSbrevDDZ6BlM+b/HRiapRFWjM5O0NS0LviG0glKmFK+hhPDd1XFeSdU1GmlLhb2CoVpIw==",
       "path": "system.threading/4.3.0",
       "hashPath": "system.threading.4.3.0.nupkg.sha512"
+    },
+    "System.Threading.Channels/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qmeeYNROMsONF6ndEZcIQ+VxR4Q/TX/7uIVLJqtwIWL7dDWeh0l1UIqgo4wYyjG//5lUNhwkLDSFl+pAWO6oiA==",
+      "path": "system.threading.channels/7.0.0",
+      "hashPath": "system.threading.channels.7.0.0.nupkg.sha512"
     },
     "System.Threading.Tasks/4.3.0": {
       "type": "package",
