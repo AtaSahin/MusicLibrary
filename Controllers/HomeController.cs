@@ -21,6 +21,7 @@ namespace MusicLibraryApp.Controllers
     [RateLimit]
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
         private readonly LastFmService _lastFmService;
         private readonly IMapper _mapper;
@@ -53,6 +54,7 @@ namespace MusicLibraryApp.Controllers
         }
         public async Task<IActionResult> Index(int? limit)
         {
+            _logger.LogInformation("Home page launched");
            
             int songsLimit = limit ?? 20; // Default olarak 20 şarkı gösterilecek
             var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
@@ -90,6 +92,7 @@ namespace MusicLibraryApp.Controllers
   
         public IActionResult AddToPlaylist(Track track)
         {
+            _logger.LogInformation("**added to playlist**");
             // Track sınıfı TrackDTO sınıfına dönüştü
             var trackDTO = _mapper.Map<TrackDTO>(track);
 
@@ -104,22 +107,25 @@ namespace MusicLibraryApp.Controllers
             return RedirectToAction("");
         }
 
-        // Playlistten şarkı çıkarma
-        public IActionResult RemoveFromPlaylist(int trackId)
+     
+        public IActionResult RemoveFromPlaylist(int id)
         {
+            // İlgili şarkıyı playlistten çıkarmak için gerekli işlemleri gerçekleştir
             var playlist = HttpContext.Session.GetObjectFromJson<Playlist>("Playlist") ?? new Playlist();
 
-            var track = playlist.Tracks.FirstOrDefault(t => t.Id == trackId);
-
-            if (track != null)
+            // Şarkıyı bul ve playlistten çıkar
+            var trackToRemove = playlist.TrackDTOs.FirstOrDefault(t => t.Id == id);
+            if (trackToRemove != null)
             {
-                playlist.Tracks.Remove(track);
+                playlist.TrackDTOs.Remove(trackToRemove);
+
+                // Playlist session olarak güncellenmiş halde kaydedildi
+                HttpContext.Session.SetObjectAsJson("Playlist", playlist);
+
+                _logger.LogInformation($"**Removed from playlist: {trackToRemove.Name}**");
             }
 
-            // Playlist session olarak kaydedildi
-            HttpContext.Session.SetObjectAsJson("Playlist", playlist);
-
-            //Düzenlenen playlist sayfasına yönlendirildi
+            // Düzenlenen playlist sayfasına yönlendirildi
             return RedirectToAction("ViewPlaylist");
         }
 

@@ -90,6 +90,14 @@
               "target": "Package",
               "version": "[7.0.11, )"
             },
+            "NLog": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.3.7, )"
+            },
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.8.1, )"

@@ -279,3 +279,7 @@ C:\Users\90545\source\repos\MusicLibraryApp\obj\Debug\net7.0\MusicLibraryApp.Res
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\RabbitMQ.Client.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\NLog.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\NLog.Extensions.Logging.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\NLog.Web.AspNetCore.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\nlog.config
