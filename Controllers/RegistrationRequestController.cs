@@ -15,16 +15,19 @@ namespace MusicLibraryApp.Controllers
     [Authorize(Roles = "Admin")]
     [RateLimit]
     public class RegistrationRequestController : Controller
+
     {
+        private readonly ILogger<RegistrationRequest> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly AuthDbContext _context;
         private readonly IEmailService _emailService;
 
-        public RegistrationRequestController(UserManager<ApplicationUser> userManager, AuthDbContext context, IEmailService emailService)
+        public RegistrationRequestController(UserManager<ApplicationUser> userManager, ILogger<RegistrationRequest> logger, AuthDbContext context, IEmailService emailService)
         {
             _userManager = userManager;
             _context = context;
             _emailService = emailService;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -49,6 +52,10 @@ namespace MusicLibraryApp.Controllers
 
                 await _context.SaveChangesAsync();
             }
+            else
+            {
+                _logger.LogError("User could not be found");
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -72,6 +79,10 @@ namespace MusicLibraryApp.Controllers
                 await _emailService.SendEmailAsync(user.Email, "Account Rejected", "Your account has been rejected by admin.");
 
                 await _context.SaveChangesAsync();
+            }
+            else
+            {
+                _logger.LogError("User could not be found");
             }
 
             return RedirectToAction(nameof(Index));

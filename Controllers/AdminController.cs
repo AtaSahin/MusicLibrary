@@ -10,10 +10,12 @@ using MusicLibraryApp.Controllers;
 [RateLimit]
 public class AdminController : Controller
 {
+    private readonly ILogger<AdminController> _logger;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public AdminController(UserManager<ApplicationUser> userManager)
+    public AdminController(UserManager<ApplicationUser> userManager, ILogger<AdminController> logger)
     {
+        _logger = logger;
         _userManager = userManager;
     }
 
@@ -32,6 +34,10 @@ public class AdminController : Controller
         {
             await _userManager.AddToRoleAsync(user, "Moderator");
             TempData["AssignModeratorMessage"] = $"{user} Successfully assigned as Moderator";
+        }
+        else
+        {
+            _logger.LogInformation("**Invalid user**");
         }
 
         return RedirectToAction("Index");

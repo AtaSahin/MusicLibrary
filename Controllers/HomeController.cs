@@ -54,7 +54,7 @@ namespace MusicLibraryApp.Controllers
         }
         public async Task<IActionResult> Index(int? limit)
         {
-            _logger.LogInformation("Home page launched");
+            
            
             int songsLimit = limit ?? 20; // Default olarak 20 şarkı gösterilecek
             var topTracksJson = await _lastFmService.GetTopTracksAsync(songsLimit);
@@ -63,6 +63,10 @@ namespace MusicLibraryApp.Controllers
             {
                 var tracks = ConvertToYourModel(topTracksJson);
                 return View(tracks);
+            }
+            else
+            {
+                _logger.LogInformation("**Error occured while listing the song**");
             }
 
             return View();
@@ -92,7 +96,7 @@ namespace MusicLibraryApp.Controllers
   
         public IActionResult AddToPlaylist(Track track)
         {
-            _logger.LogInformation("**added to playlist**");
+          
             // Track sınıfı TrackDTO sınıfına dönüştü
             var trackDTO = _mapper.Map<TrackDTO>(track);
 
@@ -122,7 +126,11 @@ namespace MusicLibraryApp.Controllers
                 // Playlist session olarak güncellenmiş halde kaydedildi
                 HttpContext.Session.SetObjectAsJson("Playlist", playlist);
 
-                _logger.LogInformation($"**Removed from playlist: {trackToRemove.Name}**");
+               // _logger.LogInformation($"**Removed from playlist: {trackToRemove.Name}**");
+            }
+            else
+            {
+                _logger.LogInformation("**Song id did not matched. Error occured**");
             }
 
             // Düzenlenen playlist sayfasına yönlendirildi
