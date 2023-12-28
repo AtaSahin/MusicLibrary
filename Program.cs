@@ -68,7 +68,7 @@ public class Program
         builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
           .AddRoles<IdentityRole>()
           .AddEntityFrameworkStores<AuthDbContext>();
-        builder.Services.AddTransient<IEmailService, SmtpEmailService>();
+        builder.Services.AddTransient<IEmailService, RabbitMQService>();
         builder.Services.AddHttpClient(); 
         builder.Services.AddSingleton<LastFmService>();
 
