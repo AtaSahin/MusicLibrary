@@ -16,6 +16,8 @@ using Microsoft.Extensions.Options;
 using AutoMapper;
 using NLog;
 using NLog.Web;
+using System.Configuration;
+
 public class Program
 {
 
@@ -34,8 +36,9 @@ public class Program
         builder.Services.AddAutoMapper(typeof(Program));
         #region Localizer
         builder.Services.AddSingleton<LanguageService>();
-      
-        builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+  
+
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
         builder.Services.AddMvc()
             .AddViewLocalization()
             .AddDataAnnotationsLocalization(options => options.DataAnnotationLocalizerProvider=(type,factory)=>
@@ -65,7 +68,7 @@ public class Program
         builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
           .AddRoles<IdentityRole>()
           .AddEntityFrameworkStores<AuthDbContext>();
-        builder.Services.AddTransient<IEmailService, SmtpEmailService>();
+        builder.Services.AddTransient<IEmailService, RabbitMQService>();
         builder.Services.AddHttpClient(); 
         builder.Services.AddSingleton<LastFmService>();
 
@@ -98,11 +101,13 @@ public class Program
         builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
         builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
         builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
-        builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+           
+            builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+   
 
-        // Session Kütüphanesi Konfigürasyonlarý
+            // Session Kütüphanesi Konfigürasyonlarý
 
-        builder.Services.AddSession(); 
+            builder.Services.AddSession(); 
 
         var app = builder.Build();
  

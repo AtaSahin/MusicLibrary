@@ -36,7 +36,7 @@ namespace MusicLibraryApp.Controllers
             return View(registrationRequests);
         }
 
-      
+
         public async Task<IActionResult> Approve(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -47,8 +47,8 @@ namespace MusicLibraryApp.Controllers
                 user.EmailConfirmed = true;
                 await _userManager.UpdateAsync(user);
 
-                // onaylandı mesajı gönder
-                await _emailService.SendEmailAsync(user.Email, "Your Account Approved by Admin", "You are now a verified user.");
+                // Send email using RabbitMQ
+                await _emailService.SendEmailAsyncWithQueue(user.Email, "Your Account Approved by Admin", "You are now a verified user.");
 
                 await _context.SaveChangesAsync();
             }
@@ -76,7 +76,7 @@ namespace MusicLibraryApp.Controllers
                 await _userManager.UpdateAsync(user);
 
                 // Rejected mesajı gönder
-                await _emailService.SendEmailAsync(user.Email, "Account Rejected", "Your account has been rejected by admin.");
+                await _emailService.SendEmailAsyncWithQueue(user.Email, "Account Rejected", "Your account has been rejected by admin.");
 
                 await _context.SaveChangesAsync();
             }
