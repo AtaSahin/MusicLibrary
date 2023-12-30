@@ -1,10 +1,16 @@
 # MusicLibraryApp
+<div style="text-align: center,text-align: center">
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg" alt="dotnet" width="40" height="40"/>
+  <div/>
+    
+## ⚡What is Music Library App?
 
-## Overview
+- Music Library App is a .NET Core 7 web application that leverages the Last.fm API to fetch and display music tracks. 
+- The application supports user registration, authentication, and authorization, with different roles such as admin, moderator, verified user, and standart user.
+- Users can create playlists, add songs, and administrators have additional capabilities like assigning roles, deleting users, and assigning moderators.
 
-MusicLibraryApp is a .NET Core 7 web application that leverages the Last.fm API to fetch and display music tracks. The application supports user registration, authentication, and authorization, with different roles such as admin, moderator, verified user, and standart user. Users can create playlists, add songs, and administrators have additional capabilities like assigning roles, deleting users, and assigning moderators.
-
-## Features
+## 🔥Features
 
 - User Registration and Authentication
 - Role-based Authorization (Admin, Moderator, Verified User, User)
@@ -44,6 +50,9 @@ MusicLibraryApp is a .NET Core 7 web application that leverages the Last.fm API 
 - NLog
 - RabbitMQ
 
+## ⚠️ Limitations
+- You cannot trrigger any button/function more than 20 within 1 min. Rate Limit Library set into project. It will direct you to error page.
+
 ## Prerequisites
 
 Before running the application, make sure you have the following installed:
@@ -52,8 +61,13 @@ Before running the application, make sure you have the following installed:
 - Visual Studio
 - MsSQL
 
-## Setup
+## 🧬 Running locally for development
 
+1. Clone the repository:
+
+   ```bash
+   https://github.com/AtaSahin/MusicLibrary.git
+   
 cd MusicLibraryApp
 
 Update the appsettings.json file with your database connection string.
@@ -61,7 +75,4 @@ Update the appsettings.json file with your database connection string.
 Run the database migrations:
 database update
 
-1. Clone the repository:
 
-   ```bash
-   https://github.com/AtaSahin/MusicLibrary.git
