@@ -25,7 +25,8 @@ public class AdminController : Controller
         return View(users);
     }
     [HttpPost]
-   
+
+
     public async Task<IActionResult> AssignModerator(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -34,10 +35,12 @@ public class AdminController : Controller
         {
             await _userManager.AddToRoleAsync(user, "Moderator");
             TempData["AssignModeratorMessage"] = $"{user} Successfully assigned as Moderator";
+           
+
         }
         else
         {
-            _logger.LogInformation("**Invalid user**");
+            _logger.LogInformation("**Invalid user Assinged as Moderator**");
         }
 
         return RedirectToAction("Index");

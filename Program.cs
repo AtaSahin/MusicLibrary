@@ -17,15 +17,16 @@ using AutoMapper;
 using NLog;
 using NLog.Web;
 using System.Configuration;
+using OfficeOpenXml;
 
 public class Program
 {
 
     public static async Task Main(string[] args)
     {
-      
-        
 
+
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
         var builder = WebApplication.CreateBuilder(args);
         var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
