@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// Import necessary namespaces
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using MusicLibraryApp.Areas.Identity.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using MusicLibraryApp.Controllers;
 
-[Authorize(Roles = "Admin")] // Admin rolüne sahip kullanıcılar için sınırlama
-
+[Authorize(Roles = "Admin")]
 [RateLimit]
 public class AdminController : Controller
 {
@@ -24,19 +26,15 @@ public class AdminController : Controller
         var users = _userManager.Users.ToList();
         return View(users);
     }
+
     [HttpPost]
-
-
     public async Task<IActionResult> AssignModerator(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
-        //Kullanıcıyı moderator rolüne atama
         if (user != null)
         {
             await _userManager.AddToRoleAsync(user, "Moderator");
-            TempData["AssignModeratorMessage"] = $"{user} Successfully assigned as Moderator";
-           
-
+            TempData["AssignModeratorMessage"] = $"{user.UserName} Successfully assigned as Moderator";
         }
         else
         {

@@ -94,6 +94,10 @@
               "target": "Package",
               "version": "[7.0.11, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
             "NLog": {
               "target": "Package",
               "version": "[5.2.7, )"
@@ -117,6 +121,10 @@
             "System.Text.Json": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.6.4, )"
             }
           },
           "imports": [
