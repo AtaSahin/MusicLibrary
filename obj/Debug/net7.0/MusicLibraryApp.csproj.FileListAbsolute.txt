@@ -288,3 +288,9 @@ C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\System.Security.Cry
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\Castle.Core.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\Moq.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\xunit.abstractions.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\xunit.assert.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\xunit.core.dll
+C:\Users\90545\source\repos\MusicLibraryApp\bin\Debug\net7.0\xunit.execution.dotnet.dll
