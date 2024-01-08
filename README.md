@@ -75,4 +75,6 @@ Update the appsettings.json file with your database connection string.
 Run the database migrations:
 database update
 
+Test Cases can be run by:
+npm test
 
