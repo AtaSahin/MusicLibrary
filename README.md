@@ -61,6 +61,48 @@ Before running the application, make sure you have the following installed:
 - Visual Studio
 - MsSQL
 
+## Docker Usage 🧬
+
+To run this project using Docker, follow these steps:
+
+1. Ensure that Docker is installed on your machine.
+
+2. Open a terminal and navigate to the root directory of the project.
+
+3. Build the Docker image:
+
+    ```bash
+    docker build -t my-project .
+    ```
+
+   Replace `my-project` with a suitable tag for your Docker image.
+
+4. Run the Docker container:
+
+    ```bash
+    docker run -p 8080:80 -p 443:443 my-project
+    ```
+
+   Adjust the port mappings (`-p`) according to your application's needs.
+
+5. Access the application in your web browser:
+
+    ```
+    http://localhost:8080
+    ```
+
+   If you specified different ports in the `docker run` command, adjust the URL accordingly.
+
+## Customization
+
+If you need to customize the Docker configuration, refer to the [official Docker documentation](https://docs.docker.com/). Additionally, check [this link](https://aka.ms/customizecontainer) for information on customizing your debug container for Visual Studio.
+
+## Operating System Compatibility
+
+Depending on the host machine's operating system, you may need to modify the base image in the Dockerfile. Refer to [this link](https://aka.ms/containercompat) for more information.
+
+
+
 ## 🧬 Running locally for development
 
 1. Clone the repository:
@@ -74,6 +116,8 @@ Update the appsettings.json file with your database connection string.
 
 Run the database migrations:
 database update
+
+
 
 Test Cases can be run by:
 npm test
