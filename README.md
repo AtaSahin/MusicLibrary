@@ -93,14 +93,6 @@ To run this project using Docker, follow these steps:
 
    If you specified different ports in the `docker run` command, adjust the URL accordingly.
 
-## Customization
-
-If you need to customize the Docker configuration, refer to the [official Docker documentation](https://docs.docker.com/). Additionally, check [this link](https://aka.ms/customizecontainer) for information on customizing your debug container for Visual Studio.
-
-## Operating System Compatibility
-
-Depending on the host machine's operating system, you may need to modify the base image in the Dockerfile. Refer to [this link](https://aka.ms/containercompat) for more information.
-
 
 
 ## 🧬 Running locally for development
